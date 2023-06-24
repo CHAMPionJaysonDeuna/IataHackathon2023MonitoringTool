@@ -1,0 +1,58 @@
+ <div class="p-grid ui-fluid">
+    <!-- FAILING -->
+    <div class="p-col-4 no-padding main-background">
+        <label for="input-error">
+        <input id="input-error" type="radio" class="input-error" value="FAILING"
+            [(ngModel)]="statusFilter" (click)="statusFilterClicked('FAILING')"/>
+        <div class="ocp-grid ui-fluid error-box">
+            <div class="ocp-col-1 no-padding"></div>
+            <div class="ocp-col-1 no-padding">
+                <i class="pi pi-times-circle icon-layout size-icon error-icon"></i>
+            </div>
+            <div class="ocp-col-1 no-padding">&nbsp;</div>
+            <div class="ocp-col-9 no-padding">
+                <p class="shipmentCount">{{displayFailing()}}</p>
+                <p class="shipmentStatus">{{'cdmp-app.monitoring.failing' | translate}}</p>
+            </div>
+        </div>
+        </label>
+    </div>
+
+    <!-- IMMINENT -->
+    <div class="p-col-4 no-padding white-background">
+        <label for="input-warning">
+        <input id="input-warning" type="radio" class="input-warning" value="IMMINENT"
+            [(ngModel)]="statusFilter" (click)="statusFilterClicked('IMMINENT')"/>
+        <div class="ocp-grid ui-fluid warning-box">
+            <div class="ocp-col-1 no-padding"></div>
+            <div class="ocp-col-1 no-padding">
+                <i class="pi pi-exclamation-triangle icon-layout size-icon warning-icon"></i>
+            </div>
+            <div class="ocp-col-1 no-padding">&nbsp;</div>
+            <div class="ocp-col-9 no-padding">
+                <p class="shipmentCount">{{displayImminent()}}</p>
+                <p class="shipmentStatus">{{'cdmp-app.monitoring.imminent' | translate}}</p>
+            </div>
+        </div>
+        </label>
+    </div>
+
+    <!-- OK -->
+    <div class="p-col-4 no-padding white-background">
+        <label for="input-ok">
+        <input id="input-ok" type="radio" class="input-ok" value="OK"
+            [(ngModel)]="statusFilter" (click)="statusFilterClicked('OK')"/>
+        <div class="ocp-grid ui-fluid ok-box">
+            <div class="ocp-col-1 no-padding"></div>
+            <div class="ocp-col-1 no-padding">
+                <i class="pi pi-check-square icon-layout size-icon ok-icon"></i>
+            </div>
+            <div class="ocp-col-1 no-padding">&nbsp;</div>
+            <div class="ocp-col-9 no-padding">
+                <p class="shipmentCount">{{displayOk()}}</p>
+                <p class="shipmentStatus">{{'cdmp-app.monitoring.ok' | translate}}</p>
+            </div>
+        </div>
+        </label>
+    </div>
+</div>

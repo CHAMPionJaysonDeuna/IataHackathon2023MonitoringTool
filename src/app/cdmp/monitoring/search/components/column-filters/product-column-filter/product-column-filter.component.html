@@ -1,0 +1,18 @@
+<span class="md-inputfield">
+    <ocp-autocomplete
+            class="ui-fluid"
+            inputStyleClass="ocp-airwaybill-input"
+            ngDefaultControl
+            (completeMethod)="completeMethod($event)"
+            (onSelect)="onInputSelect($event)"
+            (onSelectAfterBlur)="setValueFromPopup($event)"
+            (onBlur)="onInputBlur($event)"
+            (onFocus)="onInputFocus($event)"
+            [suggestions]="suggestions"
+            [forceSelection]="forceSelection"
+            [validationError]="ocpInvalid"
+            [formControl]="formControl2"
+            appendTo="body"
+            ocp-validate-async-on-blur>
+    </ocp-autocomplete>
+</span>

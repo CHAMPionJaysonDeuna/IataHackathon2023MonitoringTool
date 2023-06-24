@@ -1,0 +1,130 @@
+.error-icon {
+    font-size: 4rem;
+    text-align:center;
+    display: inline-block;
+    width: 100%;
+}
+
+.warning-icon {
+    font-size: 4rem;
+    text-align:center;
+    display: inline-block;
+    width: 100%;
+}
+
+.ok-icon {
+    font-size: 4rem;
+    text-align:center;
+    display: inline-block;
+    width: 100%;
+}
+
+.ocp-grid {
+    padding: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.shipmentStatus {
+    font-size: 0.9em;
+    text-align: left;
+    padding-left: 1.75em;
+    margin: 0.2em;
+}
+
+.shipmentCount {
+    font-size: 1.15em;
+    text-align: left;
+    margin: 1em 0em 0.3em 1.4em;
+}
+
+.main-background {
+    background-color: #e4e4e5;
+    padding: 5px;
+}
+
+.error-box {
+    border-right: 1px solid white;
+}
+
+.error-box:active {
+    transform: translateY(1px);
+}
+
+.input-error {
+    display: none;
+}
+
+.input-error + div {
+    background-image: linear-gradient(to right, rgba(255,0,0,1), rgba(255,0,0,0.625));
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    color: white;
+}
+
+.input-error:hover + div {
+    background-image: linear-gradient(to right, rgba(230,0,0,1), rgba(230,0,0,0.625));
+    cursor: pointer;
+}
+
+.input-error:checked + div {
+    border: 0.12em solid#2095de;
+}
+
+.warning-box {
+    border-right: 1px solid white;
+}
+
+.warning-box:active {
+    transform: translateY(1px);
+}
+
+.input-warning {
+    display: none;
+}
+
+.input-warning + div {
+    background-image: linear-gradient(to right, rgba(251,188,5,1), rgba(251,188,5,0.625));
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    color: white;
+}
+
+.input-warning:hover + div {
+    background-image: linear-gradient(to right, rgba(231,168,0,1), rgba(231,168,0,0.625));
+    cursor: pointer;
+}
+
+.input-warning:checked + div {
+    border: 0.12em solid#2095de;
+}
+
+.ok-box {
+    border-right: 0;
+}
+
+.ok-box:active {
+    transform: translateY(1px);
+}
+
+.input-ok {
+    display: none;
+}
+
+.input-ok + div {
+    background-image: linear-gradient(to right, rgba(3,192,74,1), rgba(3,192,74,0.625));
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    color: white;
+}
+
+.input-ok:hover + div {
+    background-image: linear-gradient(to right, rgba(0,170,50,1), rgba(0,170,50,0.625));
+    cursor: pointer;
+}
+
+.input-ok:checked + div {
+    border: 0.12em solid#2095de;
+}

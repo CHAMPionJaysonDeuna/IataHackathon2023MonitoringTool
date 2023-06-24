@@ -1,0 +1,170 @@
+<div id="airwaybillSearchContainer">
+    <ocp-header [title]="'cdmp-app.monitoring.title' | translate"
+                [businessId]=""
+                [actions]="HEADER_ACTIONS">
+    </ocp-header>
+    <ocp-search-screen #searchScreen
+                       [configuration]="searchScreenConfiguration"
+                       (onRowSelectedEvent)="rowSelected($event)"
+                       [reorderableColumns]="true"
+                       [itemDetailsTemplate]="itemDetailsTemplate"
+                       [searchForm]="this"
+                       [showOcpHeader]="false">
+        <div search-form class="ocp-grid ui-fluid" [formGroup]="form.formGroup" novalidate>
+            <div class="md-inputfield ocp-col-2">
+                <ocp-station-autocomplete fieldId="userGlobalInfos_availableStations"
+                                          formControlName="station"
+                                          i18nKey="cdmp-app.monitoring.station"
+                                          ocpRequired="true"
+                                          (onSelect)="onSelectStation($event)"
+                                          [errorMessages]="{ 'required': ['cdmp-app.monitoring.errors.required'],
+                                          'mustExist': ['cdmp-app.monitoring.errors.station-not-exist']}"
+                                          ocp-validate-async-on-blur>
+                </ocp-station-autocomplete>
+            </div>
+
+            <div class="ocp-col-2">
+                <ocp-dropdown
+                        fieldId="direction"
+                        [values]="DIRECTIONS"
+                        i18nKey="cdmp-app.monitoring.direction"
+                        formControlName="direction"
+                        (onChange)="onDirectionChanged($event)"
+                        [showClear]="false"
+                        [activated]="true">
+                </ocp-dropdown>
+            </div>
+
+            <div class="ocp-col-2">
+                <ocp-dropdown
+                        fieldId="milestone"
+                        [values]="MILESTONES"
+                        i18nKey="cdmp-app.monitoring.milestone"
+                        formControlName="milestone"
+                        [(ngModel)]="selectedMilestone"
+                        ocpRequired="true"
+                        [showClear]="false"
+                        [activated]="true">
+                </ocp-dropdown>
+            </div>
+
+            <div class="ocp-col-1">
+                <ocp-dropdown
+                        fieldId="refreshRate"
+                        [values]="REFRESH_RATES"
+                        i18nKey="cdmp-app.monitoring.refresh-rate"
+                        formControlName="refreshRate"
+                        [showClear]="false"
+                        [activated]="true">
+                </ocp-dropdown>
+            </div>
+
+            <div class="ocp-col-1">
+                <ocp-dropdown
+                        fieldId="timezone"
+                        [values]="TIMEZONES"
+                        i18nKey="cdmp-app.monitoring.timezone"
+                        formControlName="timezone"
+                        (onChange)="onTimezoneChanged($event)"
+                        [showClear]="false"
+                        [activated]="true">
+                </ocp-dropdown>
+            </div>
+
+            <div class="ocp-col-1">
+                <ocp-calendar
+                        fieldId="intervalFrom"
+                        formControlName="intervalFrom"
+                        i18nKey="cdmp-app.monitoring.interval-from"
+                        ocpRequired="true"
+                        displayTime="true"
+                        [displayDate]="false"
+                        [inputTimezone]="timezone"
+                        [activated]="true">
+                </ocp-calendar>
+            </div>
+
+            <div class="ocp-col-1">
+                <ocp-calendar
+                        fieldId="intervalTo"
+                        formControlName="intervalTo"
+                        i18nKey="cdmp-app.monitoring.interval-to"
+                        [ocpRequired]="true"
+                        [displayTime]="true"
+                        [displayDate]="false"
+                        [inputTimezone]="timezone"
+                        [activated]="true">
+                </ocp-calendar>
+            </div>
+
+            <div class="ocp-col-1">
+                <ocp-calendar
+                        fieldId="imminentTime"
+                        formControlName="imminentTime"
+                        i18nKey="cdmp-app.monitoring.imminent-time"
+                        [ocpRequired]="true"
+                        [displayDate]="false"
+                        [displayTime]="true"
+                        [inputTimezone]="timezone"
+                        [activated]="true">
+                </ocp-calendar>
+            </div>
+        </div>
+
+        <div advanced-search-form class="ocp-grid ui-fluid" [formGroup]="form.formGroup" novalidate>
+            <div class="ocp-col-4">
+                <span class="md-inputfield">
+                    <label>{{'cdmp-app.monitoring.operational-discrepancies' | translate}}</label>
+                    <p-multiSelect
+                            [options]="operationalDiscrepancies"
+                            defaultLabel="{{'cdmp-app.monitoring.discrepancies-default' | translate}}"
+                            formControlName="opDiscrepancies"
+                            [(ngModel)]="selectedOperationalDiscrepancies"
+                            [filter]="false"
+                            scrollHeight="auto">
+                        <ng-template let-column pTemplate="item">
+                            {{column.label | translate}}
+                        </ng-template>
+                    </p-multiSelect>
+                </span>
+            </div>
+
+            <div class="ocp-col-4">
+                <span class="md-inputfield">
+                    <label>{{'cdmp-app.monitoring.messaging-discrepancies' | translate}}</label>
+                    <p-multiSelect
+                            [options]="messagingDiscrepancies"
+                            defaultLabel="{{'cdmp-app.monitoring.discrepancies-default' | translate}}"
+                            formControlName="msgDiscrepancies"
+                            [(ngModel)]="selectedMessagingDiscrepancies"
+                            [filter]="false"
+                            scrollHeight="auto">
+                        <ng-template let-column pTemplate="item">
+                            {{column.label | translate}}
+                        </ng-template>
+                    </p-multiSelect>
+                </span>
+            </div>
+        </div>
+
+        <!-- Global Indicators -->
+        <div search-results class="ocp-card">
+            <consignment-status-counts
+                    [consignmentCounts]="consignmentCounts"
+                    [hidden]="hideStatusCounts"
+                    (statusFilterChange)="statusFilterChange($event)">
+            </consignment-status-counts>
+        </div>
+    </ocp-search-screen>
+
+    <!-- COLLAPSIBLE SIDE PANEL TEMPLATE-->
+    <ng-template #itemDetailsTemplate let-details="consignmentDetails">
+        <div id="genericSearchScreenDetailTemplate" class="ui-g-12 ocp-no-padding" *ngIf="consignmentDetails">
+            <monitoring-search-consignment-details
+                    [consignmentDetails]="consignmentDetails"
+                    [consignment]="consignment"
+                    [timezone]="form.formGroup.controls['timezone'].value">
+            </monitoring-search-consignment-details>
+        </div>
+    </ng-template>
+</div>

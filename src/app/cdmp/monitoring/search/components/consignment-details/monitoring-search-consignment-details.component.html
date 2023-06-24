@@ -1,0 +1,288 @@
+<!-- Summary -->
+<div>    
+    <div class="ocp-grid ui-fluid">
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.awb' | translate}}</b>
+            <p class="detailValue">{{consignment.awb}}</p>
+        </div>
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.origin' | translate}}</b>
+            <p class="detailValue">{{consignmentDetails.originCode}}</p>
+        </div>
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.destination' | translate}}</b>
+            <p class="detailValue">{{consignmentDetails.destinationCode}}</p>
+        </div>
+    </div>
+
+    <div class="ocp-grid ui-fluid">
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.product' | translate}}</b>
+            <p class="detailValue">{{consignment.productCode}}</p>
+        </div>
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.total-pieces' | translate}}</b>
+            <p class="detailValue">{{consignmentDetails.totalPieces}}</p>
+        </div>
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.total-weight' | translate}}</b>
+            <p class="detailValue">{{consignmentDetails.totalWeight.amount}} {{consignmentDetails.totalWeight.unit}}</p>
+        </div>
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.total-volume' | translate}}</b>
+            <p class="detailValue">{{consignmentDetails.totalVolume.amount}} {{consignmentDetails.totalVolume.unit}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- Route Map -->
+<div>    
+    <div class="ocp-grid ui-fluid">
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.route-map' | translate}}</b>
+        </div>
+    </div>
+
+    <!-- D2D: Pick Up -->
+    <div class="routeMapBorder">
+        <div class="p-grid ui-fluid" id="routeMapBubbleGroup">
+            <div class="segmentPieces p-col-fixed">
+                <p class="segmentPiecesDetails">{{consignmentDetails.totalPieces}}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+                <img class="MLSBubble" [src]="getD2dMilestoneImage('PUP')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('PUP', true) }}</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('PUP', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+                <img class="MLSBubble" [src]="getD2dMilestoneImage('REW')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('REW', true) }}</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('REW', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+                <img class="MLSBubble" [src]="getD2dMilestoneImage('DEW')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('DEW', true) }}</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('DEW', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+                <img class="MLSBubble" [src]="getD2dMilestoneImage('REH')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('REH', true) }}</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('REH', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+                <img class="MLSBubble" [src]="getD2dMilestoneImage('DEH')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('DEH', true) }}</p>
+                <p class="eventTime">{{ getD2dMilestoneDisplayDate('DEH', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+            </div>
+            <div class="bubbleScreen p-col">
+            </div>
+            <div class="bubbleScreen p-col">
+            </div>
+            <div class="bubbleScreen p-col">
+            </div>
+        </div>
+    </div>
+
+    <!-- Bubbles & Event Times -->
+    <ng-container *ngFor="let segment of consignmentDetails.routeMap.segments; index as i" >
+    <div *ngIf="segment.carrier?.code" class="routeMapBorder">
+        <div class="p-grid ui-fluid" id="routeMapBubbleGroup">
+            <div class="segmentPieces p-col-fixed">
+                <p class="segmentPiecesDetails">{{segment.pieces}}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'FWB')" class="MLSBubble" [src]="getMilestoneImage(segment, 'FWB')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'FWB', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'FWB', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'LAT')" class="MLSBubble" [src]="getMilestoneImage(segment, 'LAT')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'LAT', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'LAT', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'RCS')" class="MLSBubble" [src]="getMilestoneImage(segment, 'RCS')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'RCS', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'RCS', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'DEP')" class="MLSBubble" [src]="getMilestoneImage(segment, 'DEP')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'DEP', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'DEP', false) }}</p>
+            </div>
+
+            <div class="bubbleScreen p-col">
+                <img class="AirplaneBubble" [src]="airplaneBubble" title=""/>
+                <p class="flightDetails">{{ getFlightNumber(segment) }}</p>
+                <p class="flightDetails">{{segment.originCode}} - {{segment.destinationCode}}</p>
+                <p class="eventTime">{{'cdmp-app.monitoring.details.std-indicator' | translate}}{{ getDisplayDate(segment.scheduledDeparture) }}</p>
+                <p class="eventTime">{{'cdmp-app.monitoring.details.sta-indicator' | translate}}{{ getDisplayDate(segment.scheduledArrival) }}</p>
+            </div>
+
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'ARR')" class="MLSBubble" [src]="getMilestoneImage(segment, 'ARR')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'ARR', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'ARR', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'RCF')" class="MLSBubble" [src]="getMilestoneImage(segment, 'RCF')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{getMilestoneDisplayDate(segment, i, 'RCF', true) }}</p>
+                <p class="eventTime">{{getMilestoneDisplayDate(segment, i, 'RCF', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'NFD')" class="MLSBubble" [src]="getMilestoneImage(segment, 'NFD')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'NFD', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'NFD', false) }}</p>
+            </div>
+            <div class="bubbleScreen p-col">
+                <img *ngIf="isMilestoneVisible(segment, i, 'DLV')" class="MLSBubble" [src]="getMilestoneImage(segment, 'DLV')" title=""/>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="flightDetails">&nbsp;</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'DLV', true) }}</p>
+                <p class="eventTime">{{ getMilestoneDisplayDate(segment, i, 'DLV', false) }}</p>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+</div>
+
+<!-- D2D: Delivery -->
+<div class="routeMapBorder">
+    <div class="p-grid ui-fluid" id="routeMapBubbleGroup">
+        <div class="segmentPieces p-col-fixed">
+            <p class="segmentPiecesDetails">{{consignmentDetails.totalPieces}}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+        </div>
+        <div class="bubbleScreen p-col">
+        </div>
+        <div class="bubbleScreen p-col">
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('RIH')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('RIH', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('RIH', false) }}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('DIH')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('DIH', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('DIH', false) }}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('RIW')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('RIW', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('RIW', false) }}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('OFD')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('OFD', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('OFD', false) }}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('TPN')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('TPN', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('TPN', false) }}</p>
+        </div>
+        <div class="bubbleScreen p-col">
+                <p class="eventTime">&nbsp;</p>
+            <img class="D2DBubble" [src]="getD2dMilestoneImage('POD')" title=""/>
+            <p class="flightDetails">&nbsp;</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('POD', true) }}</p>
+            <p class="eventTime">{{ getD2dMilestoneDisplayDate('POD', false) }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- OneRecord Events -->
+<div class="topPadding">    
+    <div class="ocp-grid ui-fluid">
+        <div class="ocp-col-3">
+            <b class="detailDescription">OneRecord EVENTS</b>
+        </div>
+    </div>
+</div>
+<div class="ui-table">
+    <table>
+        <thead class="ui-table-thead">
+            <tr>
+                <th class="stationCell">Event</th>
+                <th class="descrCell">Description</th>
+                <th class="eventTimeCell">Actual Event Time</th>
+            </tr>
+        </thead>
+        <tbody class="ui-table-tbody dataCell">    
+            <tr *ngFor="let steve of statusEvents">
+                <td [ngClass]="{'d2dRow': steve.isD2D}">{{ steve.eventCode }}</td>
+                <td [ngClass]="{'d2dRow': steve.isD2D}">{{ steve.eventName }}</td>
+                <td [ngClass]="{'d2dRow': steve.isD2D}">{{ steve.actualEventDate._value }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Discrepancies -->
+<div class="topPadding">    
+    <div class="ocp-grid ui-fluid">
+        <div class="ocp-col-3">
+            <b class="detailDescription">{{'cdmp-app.monitoring.details.discrepancies' | translate}}</b>
+        </div>
+    </div>
+</div>
+<div class="ui-table">
+    <table>
+        <thead class="ui-table-thead">
+            <tr>
+                <th class="stationCell">{{'cdmp-app.monitoring.details.station' | translate}}</th>
+                <th class="milestoneCell">{{'cdmp-app.monitoring.details.milestone' | translate}}</th>
+                <th class="flightCell">{{'cdmp-app.monitoring.details.flight' | translate}}</th>
+                <th class="raisedTimeCell">{{'cdmp-app.monitoring.details.raised-time' | translate}}</th>
+                <th class="reasonCell">{{'cdmp-app.monitoring.details.discrepancy-reason' | translate}}</th>
+            </tr>
+        </thead>
+        <tbody class="ui-table-tbody dataCell">    
+            <tr *ngFor="let disc of consignmentDetails.discrepancies">
+                <td>{{ disc.stationCode }}</td>
+                <td>{{ disc.milestoneCode }}</td>
+                <td>{{ getFlightNumber(disc) }}</td>
+                <td>{{ getDisplayDate(disc.raisedTime) }}</td>
+                <td>{{ disc.discrepancyReason }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

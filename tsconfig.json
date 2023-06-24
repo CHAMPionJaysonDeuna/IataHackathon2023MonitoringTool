@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
+    "baseUrl": "./src",
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "exceljs": ["../node_modules/exceljs/dist/exceljs.min"],
+      "primeng/components/utils/objectutils": [
+        "../node_modules/primeng/components/utils/objectutils"
+      ],
+      "primeng/*": [
+        "../node_modules/primeng/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "moment-timezone",
+      "jest",
+      "node"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./node_modules/@types/halfred/**/*",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
+  ],
+  "angularCompilerOptions": {
+    "skipMetadataEmit": true,
+    "enableIvy": false,
+    "allowEmptyCodegenFiles": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false
+}
