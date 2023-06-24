@@ -1,0 +1,132 @@
+.ocp-grid {
+    padding: 1px 5px 5px 5px !important;
+}
+
+.routeMapBorder {
+    margin: -1px 0px;
+    border: 1px solid lightgrey;
+}
+
+.segmentPieces {
+    width: 40px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    border: 1px solid lightgrey;
+}
+
+#routeMapBubbleGroup {
+    padding: 0 !important;
+}
+
+#routeMapDetailGroup {
+    padding: 1px 0 0 0 !important;
+}
+
+.ocp-col-3 {
+    padding: 0px !important;
+}
+
+.topPadding {
+    padding-top: 10px;
+}
+
+.bubbleScreen {
+    padding: 0px !important;
+}
+
+.detailDescription {
+    font-size: 12px;
+    padding-bottom: 4px;
+}
+
+.detailValue {
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.stationCell {
+    width: 9%;
+}
+
+.milestoneCell {
+    width: 11%;
+}
+
+.flightCell {
+    width: 13%;
+}
+
+.raisedTimeCell {
+    width: 17%;
+}
+
+.discrepancyReasonCell {
+    width: 50%;
+}
+
+.descrCell {
+    width: 70%;
+}
+
+.eventTimeCell {
+    width: 19%;
+}
+
+.dataCell {
+    font-size: 13px !important;
+}
+
+.d2dRow {
+    background-color: #B0FC38;
+    font-weight: bold;
+}
+
+.D2DBubble {
+    text-align: center;
+    display: block;
+    padding-top: 1px;
+    margin: 0 auto;
+    width: 20;
+    height: 20;
+    border: 0;
+}
+
+.MLSBubble {
+    text-align: center;
+    display: block;
+    padding-top: 5px;
+    margin: 0 auto;
+    width: 34;
+    height: 34;
+    border: 0;
+}
+
+.AirplaneBubble {
+    text-align: center;
+    display: block;
+    padding-top: 5px;
+    margin: 0 auto;
+    width: 34;
+    height: 34;
+    border: 0; 
+}
+
+.eventTime {
+    font-size: 0.54rem;
+    text-align: center;
+    margin: 0;
+}
+
+.flightDetails {
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.segmentPiecesDetails {
+    font-size: 12px;
+    text-align: center;
+    margin: -1px 0;
+    padding: 40px 0;
+}

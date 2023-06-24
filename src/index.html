@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CDMP Monitoring</title>
+  <!-- base url -->
+  <base href="">
+
+  <!-- CSS will be injected by webpack here -->
+  <!-- Preload link tags will be injected by webpack here -->
+
+</head>
+
+<body>
+
+<app>
+    <style type="text/css">
+      .champ-loading {
+        width: 43px;
+        height: 43px;
+        margin: calc(50vh - 21px) auto;
+      }
+
+      .champ-loading .champ-logo {
+        width: calc(33% - 1px);
+        height: calc(33% - 1px);
+        background-color:#C71340;
+        margin-left:1px;
+        margin-bottom:1px;
+        float: left;
+        -webkit-animation: champCubeScaleDelay 1.3s infinite ease-in-out;
+        animation: champCubeScaleDelay 1.3s infinite ease-in-out;
+      }
+      .champ-loading .cube1 {
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s; }
+      .champ-loading .cube2 {
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s; }
+      .champ-loading .cube3 {
+        background-color:#005EB5;
+        -webkit-animation-delay: 0.4s;
+        animation-delay: 0.4s; }
+      .champ-loading .cube4 {
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s; }
+      .champ-loading .cube5 {
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s; }
+      .champ-loading .cube6 {
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s; }
+      .champ-loading .cube7 {
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s; }
+      .champ-loading .cube8 {
+        -webkit-animation-delay: 0.1s;
+        animation-delay: 0.1s; }
+      .champ-loading .cube9 {
+        -webkit-animation-delay: 0.2s;
+        animation-delay: 0.2s; }
+
+      @-webkit-keyframes champCubeScaleDelay {
+        0%, 70%, 100% {
+          -webkit-transform: scale3D(1, 1, 1);
+          transform: scale3D(1, 1, 1);
+        } 35% {
+            -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+          }
+      }
+
+      @keyframes champCubeScaleDelay {
+        0%, 70%, 100% {
+          -webkit-transform: scale3D(1, 1, 1);
+          transform: scale3D(1, 1, 1);
+        } 35% {
+            -webkit-transform: scale3D(0, 0, 1);
+            transform: scale3D(0, 0, 1);
+          }
+      }
+
+    </style>
+    <div class="champ-loading">
+      <div class="champ-logo cube1"></div>
+      <div class="champ-logo cube2"></div>
+      <div class="champ-logo cube3"></div>
+      <div class="champ-logo cube4"></div>
+      <div class="champ-logo cube5"></div>
+      <div class="champ-logo cube6"></div>
+      <div class="champ-logo cube7"></div>
+      <div class="champ-logo cube8"></div>
+      <div class="champ-logo cube9"></div>
+    </div>
+</app>
+
+<!-- Scripts will be injected by webpack here -->
+<script src="setup/web-setup.js"></script>
+
+</body>
+</html>

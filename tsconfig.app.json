@@ -1,0 +1,47 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./out-tsc/app",
+        "types": [
+            "node"
+        ],
+        "paths": {
+            "@angular/*": [
+                "../node_modules/@angular/*"
+            ],
+            "primeng/*": [
+                "../node_modules/primeng/*"
+            ],
+            "primeng/components/utils/objectutils": [
+                "../node_modules/primeng/components/utils/objectutils"
+            ],
+            "@auth0/*": [
+                "../node_modules/@auth0/*"
+            ],
+            "@ngx-translate/*": [
+                "../node_modules/@ngx-translate/*"
+            ],
+            "rxjs/*": [
+                "../node_modules/rxjs/*"
+            ]
+//            "@ocp/ng-core": [
+//                "../../ng-core/src/lib/ng-core.ts"
+//            ],
+//            "@ocp/ng-open-cargo-web": [
+//                "../../ng-open-cargo/src/lib/web/ng-open-cargo-web.ts"
+//            ]
+        }
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "src/**/*.spec.ts",
+        "**/*.d.ts",
+        "./node_modules"
+    ]
+}
