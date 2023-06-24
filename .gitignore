@@ -1,0 +1,67 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+.vscode/
+
+src/assets/theme/default/*.css
+src/assets/theme/test/*.css
+
+src/assets/layout/css/test/layout-ocp-test.css
+src/assets/layout/css/default/layout-ocp-default.css
+*.iml
+src/assets/i18n/
+src/assets/i18n/*.json
+/webpack-cache
+documentation/
+
+src/assets/theme/css/test/theme-ocp-test.css
+
+src/assets/theme/css/default/theme-ocp-default.css
+
+src/assets/layout/fonts/sprite.css.html
+src/assets/doc/*
+src/assets/layout/svg/*
+src/assets/fonts/ocpicons.ttf
+src/assets/fonts/ocpicons.woff
+src/assets/fonts/ocpicons.eot
+src/assets/fonts/ocpicons.svg
+
+src/assets/svg

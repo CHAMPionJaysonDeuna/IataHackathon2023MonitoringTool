@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app",
+    "module": "commonjs",
+    "target": "es5",
+    "baseUrl": "",
+    "allowJs": true
+  },
+  "include": [
+    "**/*formly-component.ts",
+    "**/*.component.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "**/*stub.ts",
+    "**/*model.ts",
+    "**/*index.ts"
+  ]
+}

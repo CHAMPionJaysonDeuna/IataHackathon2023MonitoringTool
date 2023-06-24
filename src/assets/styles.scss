@@ -1,0 +1,9 @@
+$fonts-path : "fonts/";
+$svg-path : "svg/";
+@import '~@ocp/ocp-theme/assets/sass/theme/main-theme-ocp';
+@import '~@ocp/ocp-theme/assets/sass/layout/_main-layout-ocp';
+
+.haserror {
+    border-color: #b90930; 
+    color:  #b90930; 
+}

@@ -1,0 +1,31 @@
+include: 'http://gitlab.champ.aero/common/gitlab-ci-templates/raw/master/ocp/ui/angular-cli-application-template.yml'
+#include:  '/gitlab-templates/.local-application-template.yml'
+variables:
+  BIZ_DOMAIN: "/cdmp"
+  ANSIBLE_PLAYBOOK: "cdmp-monitoring-ng-web.yml"
+
+.version_template: &version_definition |
+    export APP_MASTER_VERSION=`grep \"version\" package.json | cut -d '"' -f4`
+    export APP_FEATURE_VERSION=$APP_MASTER_VERSION-${CI_COMMIT_SHA:0:8}
+
+.publish_template: &publish_definition |
+    yarn cache clean --all
+    yarn install
+    export app_folder=$APP_FEATURE_VERSION
+    export url_domain=$BIZ_DOMAIN/$app_folder/
+    sed -ri "s|(bizUrlDomains*:* ).*|\1\'$url_domain\'|" src/setup/web-setup.build.js
+    yarn prebuild
+    node --max_old_space_size=4086 ./node_modules/@angular/cli/bin/ng build --prod --deploy-url $url_domain
+    node ./config/scripts/copy-package-json.js $url_domain
+    sed -i -e "s/.*version.*/\"version\": \"$APP_FEATURE_VERSION\",/" dist/$MODULE_NAME/package.json
+    yarn publish dist/$MODULE_NAME --registry=http://maven.champ.aero/repository/npm-champ
+
+build_app_folder:
+    stage: publish
+    script:
+        - *version_definition
+        - *publish_definition
+    except:
+        - master
+        - tags
+    when: manual
