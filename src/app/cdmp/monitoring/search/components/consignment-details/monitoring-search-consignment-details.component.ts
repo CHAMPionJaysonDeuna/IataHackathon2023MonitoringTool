@@ -38,10 +38,9 @@ export class MonitoringSearchConsignmentDetailsComponent implements OnInit {
 
     public ngOnInit(): void {
         this.getLaneSegment();
-        for (const steve of this.consignmentDetails.statusEvents) {
-            if (steve.actualEventDate) {
-                console.log('WHY: ' + JSON.stringify(steve));
-                this.statusEvents.push(steve);
+        for (const st of this.consignmentDetails.statusEvents) {
+            if (st.actualEventDate != null && !['DEP', 'ARR'].includes(st.eventCode)) {
+                this.statusEvents.push(st);
             }
         }
     }
@@ -156,7 +155,8 @@ export class MonitoringSearchConsignmentDetailsComponent implements OnInit {
 
     public getD2dMilestoneImage(mls: string): string {
         const image = this.milestoneBubble.replace(/MLS/g, mls);
-        const color: string = image.replace(/COLOR/, this.getD2dMilestoneEvent(mls) == null ? 'blue' : 'green');
+        const steve = this.getD2dMilestoneEvent(mls);
+        const color: string = image.replace(/COLOR/, steve == null ? 'blue' : (steve.actualEventDate ? 'green' : 'blue'));
         return color;
     }
 

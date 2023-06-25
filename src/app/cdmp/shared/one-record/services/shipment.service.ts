@@ -58,16 +58,16 @@ export class OneRecordShipmentService {
         var events: ShipmentStatusEvents[] = [];
         for (let i = 0; i < obj._graph.length; ++i) {
             var steve:ShipmentStatusEvents = Object.assign({}, steve, obj._graph[i]);
+            steve.actualEventDate = null;
             var preSteve = this.getStatusEvent(events, steve.eventCode);
             if (steve.eventTimeType == 'Actual') {
                 steve.actualEventDate = this.formatEventTime(steve.eventDate);
-                if (preSteve != null) {
+                if (preSteve !== null) {
                     preSteve.actualEventDate = steve.actualEventDate;
                 }
-                console.log('MLS: ' + steve.eventCode + ' : ' + steve.actualEventDate._value);
             } else if (steve.eventTimeType == 'Planned' || steve.eventTimeType == 'Predicted') {
                 steve.plannedEventDate = this.formatEventTime(steve.eventDate);
-                if (preSteve != null) {
+                if (preSteve !== null) {
                     preSteve.actualEventDate = steve.actualEventDate;
                 }
             }
@@ -75,6 +75,12 @@ export class OneRecordShipmentService {
             if (preSteve == null && steve.eventCode !== 'BKD') {
                 events.push(steve);
             }    
+        }
+
+        for (const ste of events) {
+            if (ste.actualEventDate != null) {
+                console.log('CHK: ' + JSON.stringify(ste));
+            }
         }
 
         return events.sort((e1, e2) => { 
@@ -85,9 +91,9 @@ export class OneRecordShipmentService {
     }
 
     private getStatusEvent(events: ShipmentStatusEvents[], mls: string): ShipmentStatusEvents {
-        for (const steve of events) {
-            if (steve.eventCode == mls) {
-                return steve;
+        for (const stev of events) {
+            if (stev.eventCode == mls) {
+                return stev;
             }
         }
         return null;

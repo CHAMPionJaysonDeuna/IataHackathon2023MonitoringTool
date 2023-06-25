@@ -6,7 +6,7 @@ import { SearchScreenCell } from '@ocp/ng-open-cargo-web';
     styleUrls: ['./monitoring-search-tablecell.component.scss'],
     template: `
         <div (mouseenter)="statusArrToolTip.show($event)" (mouseleave)="statusArrToolTip.hide()">
-            <a href="https://app.cumul.io/s/common-user-dashboard-dxuwnxwnf55i5ggc" target="_blank"><i class="pi pi-chart-bar icon-layout size-icon view-icon"></i></a>
+            <a href="https://app.cumul.io/s/-druyvravscwx7vd0" target="_blank"><i class="pi pi-chart-bar icon-layout size-icon view-icon"></i></a>
             <p-overlayPanel #statusArrToolTip [showCloseIcon]="false" [dismissable]="true" appendTo="body">
                 <div>dashboard view of this shipment</div>
             </p-overlayPanel>

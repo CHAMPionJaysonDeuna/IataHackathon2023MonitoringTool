@@ -9,7 +9,7 @@ export interface ShipmentStatusEvents {
     eventTimeType: string;
     eventDate: EventDate;
     creationDate: EventDate;
-    actualEventDate?: EventDate;
-    plannedEventDate?: EventDate;
+    actualEventDate: EventDate;
+    plannedEventDate: EventDate;
     isD2D: boolean;
 }
